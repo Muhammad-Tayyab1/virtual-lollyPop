@@ -1,0 +1,48 @@
+body{
+    text-align: center;
+}
+.listlolly{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.listlolly .lollipop .LollyForm{
+    height: 300px;
+}
+.container{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+.LollyForm{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.lollyFlavour{
+    display: flex;
+    flex-direction: column;
+}
+.pickerLabel{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin: 20px;
+    overflow: hidden;
+
+}
+.colorBox{
+    
+    width: 80px;
+    height: 80px;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+.Form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
