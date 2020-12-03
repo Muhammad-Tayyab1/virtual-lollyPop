@@ -34,7 +34,7 @@ body{
 
 }
 .colorBox{
-    
+    cursor: pointer;
     width: 80px;
     height: 80px;
     margin-top: -10px;

@@ -1,40 +1,66 @@
+import { gql, useMutation, useQuery } from '@apollo/client';
 import React, { useRef, useState } from 'react'
 import Header from '../components/Header'
 import Lolly from '../components/Lolly'
 
+const GET_DATA = gql`{
+hello
+}`
+
+const lollyMutation = gql`
+mutation createLolly($recipientName: String!, $message: String!, $senderName: String!, $flavourTop: String!, $flavourMiddle: String!, $flavourBottom: String!),{
+    createLolly(recipientName: $recipientName, message: $message, senderName: $senderName, flavourTop: $flavourTop, flavourMiddle: $flavourMiddle, flavourBottom: $flavourBottom),{
+        message
+        lollyPath
+    }
+}
+`
 export default function CreateLolly() {
-    const [color1, setColor1] = useState("#E3A28D");
-    const [color2, setColor2] = useState("#8C0040");
-    const [color3, setColor3] = useState("#C06C50");
+    const [color1, setColor1] = useState("#d52358");
+    const [color2, setColor2] = useState("#e95946");
+    const [color3, setColor3] = useState("#deaa43");
     const recipientNameRef = useRef();
     const messageRef = useRef();
     const senderRef = useRef();
-const submit=()=>{
-    console.log('clicked');
-    console.log("color1", color1)
-    console.log("sender", senderRef.current.value)
-}
+    const { loading, error, data } = useQuery(GET_DATA);
+
+    const [createLolly] = useMutation(lollyMutation);
+    const submit = async () => {
+        console.log('clicked');
+        console.log("color1", color1)
+        console.log("sender", senderRef.current.value);
+        const result = await createLolly({
+            variables: {
+                recipientName: recipientNameRef.current.value,
+                message: messageRef.current.value,
+                senderName: senderRef.current.value,
+                flavourTop: color1,
+                flavourMiddle: color2,
+                flavourBottom: color3,
+            }
+        });
+        console.log("Result", result)
+    }
     return (
         <div className="container">
+            {data && data.hello && <div>{data.hello}</div>}
             <Header />
             <div className="LollyForm">
-
-
                 <div>
                     <Lolly LollyTop={color1} Lollymiddle={color2} LollyBottom={color3} />
                 </div>
                 <div className="lollyFlavour">
                     <label htmlFor="FlavourTop" className="pickerLabel">
-                        <input type="color" value={color2} className="colorBox" name="FlavourTop" id="FlavourTop"
+                        <input type="color" value={color1} className="colorBox" name="FlavourTop" id="FlavourTop"
                             onChange={(e) => {
-                                setColor2(e.target.value)
+                                setColor1(e.target.value)
                             }}
                         />
                     </label>
                     <label htmlFor="FlavourTop" className="pickerLabel">
-                        <input type="color" value={color1} className="colorBox" name="FlavourTop" id="FlavourTop"
+                        <input type="color" value={color2} className="colorBox" name="FlavourTop" id="FlavourTop"
                             onChange={(e) => {
-                                setColor3(e.target.value)
+                                setColor2(e.target.value)
                             }}
                         />
                     </label>
@@ -44,7 +70,7 @@ const submit=()=>{
                     <label htmlFor="FlavourTop" className="pickerLabel">
                         <input type="color" value={color3} className="colorBox" name="FlavourTop" id="FlavourTop"
                             onChange={(e) => {
-                                setColor1(e.target.value)
+                                setColor3(e.target.value)
                             }}
                         />
                     </label>
@@ -59,13 +85,13 @@ const submit=()=>{
                         <label htmlFor="recipientName">
                             Message:
                        </label>
-                        <textarea rows="18" columns="30" ref={messageRef} />
+                        <textarea rows="10" columns="20" ref={messageRef} />
                         <label htmlFor="recipientName">
                             From
                        </label>
-                        <input type="text" required name="recipientName" id="recipientName" ref={senderRef} />
+                        <input type="text" required name="senderName" id="senderName" ref={senderRef} />
                     </div>
-                    <input type="button" value="Create" onClick={submit}/>
+                    <input type="button" value="Create" onClick={submit} />
                 </div>
             </div>
         </div>
