@@ -2,11 +2,13 @@ const { ApolloServer, gql } = require('apollo-server-lambda')
 const faunadb = require("faunadb");
 const q = faunadb.query;
 const shortId = require("shortid")
+require("dotenv").config();
 const typeDefs = gql`
   type Query {
     hello: String
-    
+    getLollies: [Lolly!]
   }
+  
   type Lolly {
     recipientName: String!
     message: String!
@@ -22,14 +24,39 @@ const typeDefs = gql`
   `
 const resolvers = {
   Query: {
-    hello: () => {
-      return 'Hello, world!'
-    },
+    getLollies: async (root, args, context) => {
+      try {
+        const client = new faunadb.Client({
+          secret: process.env.LOLLY_SECRET,
+        });
 
+        const result = await client.query(
+          query.Map(
+            query.Paginate(query.Match(query.Index("lolly_by_path"))),
+            query.Lambda("x", query.Get(query.Var("x")))
+          )
+        );
+
+        return result.data.map((d) => {
+          return {
+            id: d.ref.id,
+            flavourTop: d.data.flavourTop,
+            flavourMiddle: d.data.flavourMiddle,
+            flavourBottom: d.data.flavourBottom,
+            recipientName: d.data.recipientName,
+            message: d.data.message,
+            senderName: d.data.senderName,
+            lollyPath: d.data.lollyPath,
+          };
+        });
+      } catch (error) {
+        console.log("Error in fetching Data : ", error);
+      }
+    },
   },
   Mutation: {
     createLolly: async(_, args) => {
-      const client = new faunadb.Client({ secret: "fnAD8HoDaZACASEvWLq_iqfcUebwH2pnF7GbGdp1" })
+      const client = new faunadb.Client({ secret: process.env.LOLLY_SECRET})
       const id = shortId.generate();
       args.lollyPath = id;
       

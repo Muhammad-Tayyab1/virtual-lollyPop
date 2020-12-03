@@ -10,13 +10,13 @@ export default function Home() {
 <div className="container"><Header/></div>
 <div className="listlolly">
   <div>
-     <Lolly LollyBottom="#C06C50" LollyTop="#E3A28D" Lollymiddle="#8C0040" />
+     <Lolly LollyBottom="#C06C50" LollyTop="#E3A28D" LollyMiddle="#8C0040" />
     </div>
     <div>
-     <Lolly LollyBottom="#C24C50" LollyTop="#8B4513" Lollymiddle="#8C0090" />
+     <Lolly LollyBottom="#C24C50" LollyTop="#8B4513" LollyMiddle="#8C0090" />
     </div>
     <div>
-     <Lolly LollyBottom="#FF00FF" LollyTop="#A52A2A" Lollymiddle="#ADFF2F" />
+     <Lolly LollyBottom="#FF00FF" LollyTop="#A52A2A" LollyMiddle="#ADFF2F" />
     </div>
 </div>
     <input type="button" value="Create Lolly"
