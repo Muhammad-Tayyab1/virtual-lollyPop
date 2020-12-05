@@ -8,7 +8,7 @@ const Result = ({ lollyPath,  recipientName, message, senderName }) => {
             <h4>Share lolly with this link:</h4>
             <h3 onClick={()=>{
                 navigate(`/${lollyPath}`)
-            } }> {`/lolly/${lollyPath}`}</h3>
+            } }> {`https://lollypop-project.netlify.app/lolly/${lollyPath}`}</h3>
             <div className="result__details">
                 <p className="reciever">{ recipientName}</p>
                 <p className="message">{message}</p>
