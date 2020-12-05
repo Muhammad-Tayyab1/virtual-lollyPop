@@ -10,7 +10,7 @@ module.exports = {
         fieldName: `LOLLIES`,
         // Url to query from
         url:
-          "/.netlify/functions/createLolly",
+          "https://lollypop-project.netlify.app/.netlify/functions/createLolly",
       },
     },
   ],
