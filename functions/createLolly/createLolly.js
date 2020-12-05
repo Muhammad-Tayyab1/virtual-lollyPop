@@ -1,15 +1,16 @@
-const { ApolloServer, gql } = require('apollo-server-lambda')
+const { ApolloServer, gql } = require('apollo-server-lambda');
+const { default: Axios } = require('axios');
 const faunadb = require("faunadb");
 const q = faunadb.query;
 const shortId = require("shortid")
 require("dotenv").config();
 const typeDefs = gql`
   type Query {
-    hello: String
     getLollies: [Lolly]
   }
   
   type Lolly {
+    id: ID!
     recipientName: String!
     message: String!
     senderName: String!
@@ -46,7 +47,7 @@ const resolvers = {
 
         return result.data.map((d) => {
           return {
-            id: d.ref.id,
+            id: d.ts,
             flavourTop: d.data.flavourTop,
             flavourMiddle: d.data.flavourMiddle,
             flavourBottom: d.data.flavourBottom,
@@ -62,28 +63,25 @@ const resolvers = {
     },
   },
   Mutation: {
-    createLolly: async (_, args) => {
+    createLolly: async (_, {recipientName,message,senderName,flavourTop,flavourMiddle, flavourBottom,lollyPath}) => {
       const client = new faunadb.Client({ secret: process.env.LOLLY_SECRET })
-      const id = shortId.generate();
-      args.lollyPath = id;
-
-      const result = await client.query(
+        const result = await client.query(
         q.Create(q.Collection("lollies"), {
-          data: args
+          data: {
+             recipientName,
+             message,
+             senderName,
+             flavourTop,
+             flavourMiddle,
+             flavourBottom,
+             lollyPath:shortId.generate(),
+          }
         })
       );
       console.log('Result', result);
       console.log('Result', result.data);
-      return  {
-          id: result.ref.id,
-          flavourTop: result.data.flavourTop,
-          flavourMiddle: result.data.flavourMiddle,
-          flavourBottom: result.data.flavourBottom,
-          recipientName: result.data.recipientName,
-          message: result.data.message,
-          senderName: result.data.senderName,
-          lollyPath: result.data.lollyPath,
-        };
+     
+      return result.data;
 
     },
   },

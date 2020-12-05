@@ -38,7 +38,6 @@ export default function CreateLolly() {
         });
         console.log("Result", result);
     }
-
     useEffect(() => {
         async function runHook() {
             const response = await fetch("https://api.netlify.com/build_hooks/5fc20f9f9ad37b0da2257b3b", {
@@ -49,6 +48,7 @@ export default function CreateLolly() {
         runHook();
 
     }, [data])
+
     return (
         <div className="container">
             <Header />
@@ -88,15 +88,15 @@ export default function CreateLolly() {
                             <label className="label" htmlFor="recipientName">
                                 To
                             </label>
-                                <input type="text" placeholder="To..." required={'Field Required'} name="recipientName" id="recipientName" ref={recipientNameRef} />
+                            <input type="text" placeholder="To..." required={'Field Required'} name="recipientName" id="recipientName" ref={recipientNameRef} />
                             <label className="label" htmlFor="recipientName">
                                 Message
                             </label>
-                                <textarea rows="15" placeholder="Message..." columns="25" ref={messageRef} />
+                            <textarea rows="15" placeholder="Message..." columns="25" ref={messageRef} />
                             <label className="label" htmlFor="recipientName">
                                 From
                             </label>
-                                <input type="text" placeholder="From..." required name="senderName" id="senderName" ref={senderRef} />
+                            <input type="text" placeholder="From..." required name="senderName" id="senderName" ref={senderRef} />
                         </div>
                         <input className="btn" type="button" disabled={loading ? true : false} value="Freeze lolly and get a link" onClick={submit} />
                     </div></> : <Result lollyPath={data?.createLolly?.lollyPath} recipientName={data?.createLolly?.recipientName} senderName={data?.createLolly?.senderName} message={data?.createLolly?.message} />}
