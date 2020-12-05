@@ -84,7 +84,7 @@ a:-webkit-any-link:hover{
     text-align: start;
    width: 250px;
    border-radius: 10px;
-    box-shadow: 0 0 20px rgb(219, 105, 12);
+    box-shadow: 0 0 10px rgb(219, 105, 12);
     margin-left: 30px;
 }
 .Form > * {
@@ -92,15 +92,19 @@ a:-webkit-any-link:hover{
     padding: 3px 10px;
 }
 .Form > textarea{
+border-radius: 8px;
 height: 250px;
 background-color: gray;
 font-size: 1.4rem;
 color: white;
+box-shadow: 0 0 10px rgb(219, 26, 12);
 }
 .Form > input{
+    border-radius: 5px;
+    height: 20px;
     background-color: gray; 
     color: white;
-    
+    box-shadow: 0 0 10px rgb(219, 19, 12);
 }
 .Form > ::placeholder{
     color: white;
