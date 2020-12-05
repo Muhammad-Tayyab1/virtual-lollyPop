@@ -1,25 +1,58 @@
 body{
     text-align: center;
+    background-color: black;
+}
+a:-webkit-any-link {
+    color:rgb(171, 111, 226);
+    text-shadow: 0 0 20px rgb(219, 4, 22);
+    cursor: pointer;
+    text-decoration: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    text-decoration-style: double;
+    text-decoration-color: initial;
+}
+.header{
+    font-family: Yellowtail, cursive;
+    font-size: 1.4rem;
+    color: white;
+    text-shadow: 0 0 20px rgb(240, 48, 64);
+ text-decoration: none;
+}
+.head{
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    color: rgb(167, 24, 24);
+    
+}
+a:-webkit-any-link:hover{
+    color: rgb(255, 169, 8);
 }
 .listlolly{
     display: flex;
     flex-direction: row;
     justify-content: center;
+
 }
 .listlolly .lollipop .LollyForm{
-    height: 300px;
+    height: 250px;
+    width: 100%;
 }
 .container{
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    align-items: center;
+     
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    
 }
 .LollyForm{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;    
 }
 .lollyFlavour{
     display: flex;
@@ -33,6 +66,11 @@ body{
     overflow: hidden;
 
 }
+.label{
+    justify-content: start;
+    color: white;
+    align-items: flex-start;
+}
 .colorBox{
     cursor: pointer;
     width: 80px;
@@ -43,6 +81,95 @@ body{
 .Form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    text-align: start;
+   width: 250px;
+   border-radius: 10px;
+    box-shadow: 0 0 20px rgb(219, 105, 12);
+    margin-left: 30px;
 }
+.Form > * {
+     margin: 5px 0;
+    padding: 3px 10px;
+}
+.Form > textarea{
+height: 250px;
+background-color: gray;
+font-size: 1.4rem;
+color: white;
+}
+.Form > input{
+    background-color: gray; 
+    color: white;
+    
+}
+.Form > ::placeholder{
+    color: white;
+}
+.btn{
+    margin-top: 20px;
+    
+    height: 30px;
+    border-radius: 30px;
+    background-color: black;
+    color: violet;
+    box-shadow: 0 0 5px violet;
+    border-bottom: none;
+}
+.btn:hover{
+    background-color: blueviolet;
+    
+}
+.LollyFormDiv{
+display: flex;
+justify-content: space-around;
+
+
+}
+.result {
+    color: #fff;
+    padding-left: 40px;
+  }
+  .result > h4 {
+    text-align: center;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    font-style: italic;
+  }
+  .result > h3 {
+    color: #fa73d9;
+    margin-top: 0.5em;
+    padding: 0.5em 1em;
+    border: 1px solid #000;
+    background-color: #000;
+    text-align: center;
+    letter-spacing: 2px;
+    box-shadow: 0 0 15px rgba(231, 9, 9, 0.6);
+  }
+  .result > h3:hover{
+      color: rgb(179, 112, 24);
+      cursor: pointer;
+  }
+  .result__details {
+    padding: 1em 2em;
+    margin-bottom: 1.5em;
+    background-color: rgba(235, 16, 16, 0.2);
+    box-shadow: 0 0 10px rgba(250, 7, 7, 0.6);
+    text-align: left;
+    font-style: italic;
+    font-size: 1.1em;
+    color: #fff;
+  }
+  .receiver {
+    font-family: Yellowtail, cursive;
+    font-size: 1.7em;
+    font-style: normal;
+    text-shadow: #000 0 0 10px;
+  }
+  .sender {
+    font-family: Yellowtail, cursive;
+    font-size: 1.7em;
+    font-style: normal;
+    text-shadow: rgb(230, 216, 16) 0 0 10px;
+    text-align: center;
+  }
+  

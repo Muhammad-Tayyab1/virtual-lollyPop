@@ -7,7 +7,7 @@ export default function Home() {
   return( 
   
   <div >
-<div className="container"><Header/></div>
+<div><Header/></div>
 <div className="listlolly">
   <div>
      <Lolly LollyBottom="#C06C50" LollyTop="#E3A28D" LollyMiddle="#8C0040" />
@@ -19,7 +19,7 @@ export default function Home() {
      <Lolly LollyBottom="#FF00FF" LollyTop="#A52A2A" LollyMiddle="#ADFF2F" />
     </div>
 </div>
-    <input type="button" value="Create Lolly"
+    <input type="button" className="btn" value="Make a new lolly to send to a friend"
     onClick={()=>
     navigate("/createLolly")
     }
