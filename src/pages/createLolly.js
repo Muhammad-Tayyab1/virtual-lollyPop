@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Header from '../components/Header'
 import Lolly from '../components/Lolly'
 import Result from '../components/Result';
@@ -38,7 +38,18 @@ export default function CreateLolly() {
         });
         console.log("Result", result);
     }
-   return (
+
+    useEffect(() => {
+        async function runHook() {
+            const response = await fetch("https://api.netlify.com/build_hooks/5fc20f9f9ad37b0da2257b3b", {
+                method: "POST",
+            });
+
+        }
+        runHook();
+
+    }, [data])
+    return (
         <div className="container">
             <Header />
             <div className="LollyForm">
