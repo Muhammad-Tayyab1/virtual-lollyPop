@@ -80,7 +80,14 @@ const resolvers = {
       );
       console.log('Result', result);
       console.log('Result', result.data);
-     
+      Axios
+      .post("https://api.netlify.com/build_hooks/5fc20f9f9ad37b0da2257b3b")
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
       return result.data;
 
     },
