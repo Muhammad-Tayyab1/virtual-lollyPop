@@ -3,31 +3,26 @@
 //   const { createPage } = actions
 
 //   const result = await graphql(`
-//     {
-//       lollies {
-//         getLollies {
-//           recipientName
-//           message
-//           senderName
-//           flavourTop
-//           flavourMiddle
-//           flavourBottom
-//           lollyPath
-//         }
+//   query MyQuery {
+//     lollies {
+//       getLollies {
+//         lollyPath
+//         message
 //       }
 //     }
-//   `)
+//   }
+// `)
 
- 
+
 //   console.log(result);
-//   result.data.lollies.getLollies.map((data) => {
+//   result.data.lollies.getLollies.forEach(({ node }) => {
 //     createPage({
-//       path: `${data.lollyPath}`,
+//       path: `${node.lollyPath}`,
 //       component: path.resolve("./src/template/lollyPage.js"),
 //       context: {
-//         data: data,
+//         lollyPath: node.lollyPath
 //       },
 //     });
-//     })
+//   })
 
 // }

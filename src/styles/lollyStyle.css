@@ -1,6 +1,7 @@
 body{
     text-align: center;
     background-color: black;
+    color: white;
 }
 a:-webkit-any-link {
     color:rgb(171, 111, 226);
@@ -93,7 +94,7 @@ a:-webkit-any-link:hover{
 }
 .Form > textarea{
 border-radius: 8px;
-height: 250px;
+height: 150px;
 background-color: gray;
 font-size: 1.4rem;
 color: white;
@@ -126,12 +127,13 @@ box-shadow: 0 0 10px rgb(219, 26, 12);
 .LollyFormDiv{
 display: flex;
 justify-content: space-around;
-
+color: white;
 
 }
 .result {
     color: #fff;
     padding-left: 40px;
+    
   }
   .result > h4 {
     text-align: center;
