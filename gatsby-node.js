@@ -1,30 +1,33 @@
-const path = require("path")
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+// const path = require("path")
+// exports.createPages = async ({ graphql, actions }) => {
+//   const { createPage } = actions
 
-  const { data } = await graphql(`
-    {
-      lollies {
-        getLollies {
-          recipientName
-          message
-          senderName
-          flavourTop
-          flavourMiddle
-          flavourBottom
-          lollyPath
-        }
-      }
-    }
-  `)
+//   const result = await graphql(`
+//     {
+//       lollies {
+//         getLollies {
+//           recipientName
+//           message
+//           senderName
+//           flavourTop
+//           flavourMiddle
+//           flavourBottom
+//           lollyPath
+//         }
+//       }
+//     }
+//   `)
 
  
-    createPage({
-      path: `lolly/${data.lollyPath}`,
-      component: path.resolve("./src/template/lollyPage.js"),
-      context: {
-        data: data
-      },
-    })
+//   console.log(result);
+//   result.data.lollies.getLollies.map((data) => {
+//     createPage({
+//       path: `${data.lollyPath}`,
+//       component: path.resolve("./src/template/lollyPage.js"),
+//       context: {
+//         data: data,
+//       },
+//     });
+//     })
 
-}
+// }
