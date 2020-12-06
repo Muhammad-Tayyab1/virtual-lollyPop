@@ -6,7 +6,7 @@ const shortId = require("shortid")
 require("dotenv").config();
 const typeDefs = gql`
   type Query {
-    getLollies: [Lolly]
+    getLollies: [Lolly]!
   }
   
   type Lolly {
@@ -21,12 +21,13 @@ const typeDefs = gql`
   }
    type Mutation {
      createLolly (
-       recipientName: String!,
-       message: String!,
-       senderName: String!,
-       flavourTop: String!, 
-       flavourMiddle: String!,
+       recipientName: String!
+       message: String!
+       senderName: String!
+       flavourTop: String! 
+       flavourMiddle: String!
        flavourBottom: String!
+      
       ): Lolly 
    }
   `
@@ -63,7 +64,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    createLolly: async (_, {recipientName,message,senderName,flavourTop,flavourMiddle, flavourBottom,lollyPath}) => {
+    createLolly: async (_, {recipientName,message,senderName,flavourTop,flavourMiddle, flavourBottom, lollyPath}) => {
       const client = new faunadb.Client({ secret: process.env.LOLLY_SECRET })
         const result = await client.query(
         q.Create(q.Collection("lollies"), {

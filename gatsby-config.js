@@ -11,6 +11,7 @@ module.exports = {
         // Url to query from
         url:
           "https://lollypop-project.netlify.app/.netlify/functions/createLolly",
+          refetchInterval: 60,
       },
     },
   ],
