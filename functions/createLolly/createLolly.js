@@ -6,11 +6,11 @@ const shortId = require("shortid")
 require("dotenv").config();
 const typeDefs = gql`
   type Query {
-    getLollies: [Lolly]!
+    hello: String
+    getLollies: [Lolly!]
   }
   
   type Lolly {
-    id: ID!
     recipientName: String!
     message: String!
     senderName: String!
@@ -21,13 +21,12 @@ const typeDefs = gql`
   }
    type Mutation {
      createLolly (
-       recipientName: String!
-       message: String!
-       senderName: String!
-       flavourTop: String! 
-       flavourMiddle: String!
+       recipientName: String!,
+       message: String!,
+       senderName: String!,
+       flavourTop: String!, 
+       flavourMiddle: String!,
        flavourBottom: String!
-      
       ): Lolly 
    }
   `
@@ -48,7 +47,7 @@ const resolvers = {
 
         return result.data.map((d) => {
           return {
-            id: d.ts,
+            id: d.ref.id,
             flavourTop: d.data.flavourTop,
             flavourMiddle: d.data.flavourMiddle,
             flavourBottom: d.data.flavourBottom,
@@ -64,7 +63,7 @@ const resolvers = {
     },
   },
   Mutation: {
-    createLolly: async (_, {recipientName,message,senderName,flavourTop,flavourMiddle, flavourBottom, lollyPath}) => {
+    createLolly: async (_, {recipientName,message,senderName,flavourTop,flavourMiddle, flavourBottom,lollyPath}) => {
       const client = new faunadb.Client({ secret: process.env.LOLLY_SECRET })
         const result = await client.query(
         q.Create(q.Collection("lollies"), {
@@ -89,7 +88,16 @@ const resolvers = {
       .catch(function (error) {
         console.error(error);
       });
-      return result.data;
+      return  {
+          id: result.ref.id,
+          flavourTop: result.data.flavourTop,
+          flavourMiddle: result.data.flavourMiddle,
+          flavourBottom: result.data.flavourBottom,
+          recipientName: result.data.recipientName,
+          message: result.data.message,
+          senderName: result.data.senderName,
+          lollyPath: result.data.lollyPath,
+        };
 
     },
   },

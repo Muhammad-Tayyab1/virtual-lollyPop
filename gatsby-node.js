@@ -1,10 +1,10 @@
 const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
 
-  const result = await graphql(`
-  {
-      get_lollies {
+  const { data } = await graphql(`
+    {
+      lollies {
         getLollies {
           recipientName
           message
@@ -18,22 +18,13 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  
+ 
     createPage({
-      path: `${result.lollyPath}`,
+      path: `lolly/${data.lollyPath}`,
       component: path.resolve("./src/template/lollyPage.js"),
       context: {
-        result: result
+        data: data
       },
     })
-  
+
 }
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage } = actions;
-
-  // page.matchPath is a special key that’s used for matching pages
-
-  // only on the client.
-
-
-};
